@@ -24,7 +24,7 @@ const renderPage = (num, canvas, ctx) => {
         // --- LE SECRET DE LA QUALITÉ EST ICI ---
         // On force un facteur de 4 (4 pixels calculés pour 1 pixel affiché)
         // C'est lourd, mais c'est ce qui donne le rendu "Croustillant"
-        const renderQuality = 2; 
+        const renderQuality = 1; 
 
         // 1. Calcul de la place disponible sur l'écran
         const maxWidth = (window.innerWidth - 100) / 2; // -100px pour les boutons
