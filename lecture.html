@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Écart vital & schizophrénie - Lecture</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="lecteur.css"> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script>
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
     </script>
 </head>
-<body class="viewer-body"> <button id="prev-btn" class="nav-btn left"></button>
+<body>
+    
+    <button id="prev-btn" class="nav-btn left"></button>
+    <button id="next-btn" class="nav-btn right"></button>
 
     <div class="viewer-container">
         <div id="book-container">
@@ -19,10 +22,17 @@
         </div>
     </div>
 
-    <button id="next-btn" class="nav-btn right"></button>
-
     <div class="page-info">
         <input type="text" id="page-num" value="1"> / <span id="page-count">--</span>
+    </div>
+
+    <div class="viewer-controls-left">
+        <a href="index.html" class="viewer-btn" title="Retour à l'accueil">
+            <img src="Assets/b_back.png" alt="Retour" class="viewer-icon">
+        </a>
+        <a href="Ecart_vital_et_schizophrenie-Timeo_Langlois.pdf" download class="viewer-btn" title="Télécharger le PDF">
+            <img src="Assets/b_download.png" alt="Télécharger" class="viewer-icon">
+        </a>
     </div>
 
     <script src="script.js"></script>
