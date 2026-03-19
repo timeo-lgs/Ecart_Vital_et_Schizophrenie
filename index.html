@@ -3,30 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Mémoire</title>
+    <title>Écart vital & schizophrénie - Timéo Langlois</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-    <script>
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-    </script>
 </head>
-<body>
+<body class="landing-body">
 
-    <button id="prev-btn" class="nav-btn left">❮</button>
+    <div class="landing-left">
+        <div class="landing-grid">
+            
+            <div class="cover-wrapper">
+                <img src="Assets/couverture.webp" alt="Couverture" class="cover-img">
+            </div>
 
-    <div class="viewer-container">
-        <div id="book-container">
-            <canvas id="left-page"></canvas>
-            <canvas id="right-page"></canvas>
+            <div class="text-and-buttons">
+                <div class="title-wrapper">
+                    <h1>ÉCART VITAL &<br>SCHIZOPHRÉNIE</h1>
+                    <h2>D'autres normativités graphiques</h2>
+                    
+                    <div class="author-block">
+                        <hr class="author-line">
+                        <h3>Timéo Langlois</h3>
+                    </div>
+                </div>
+
+                <div class="buttons-wrapper">
+                    <a href="lecture.html" class="action-btn">
+                        Lire en ligne
+                        <img src="Assets/b_right_arrow.png" alt="" class="btn-icon">
+                    </a>
+                    <a href="Écart_Vital_&_Schizophrénie-Timéo_Langlois.pdf" download class="action-btn">
+                        Télécharger
+                        <img src="Assets/b_download.png" alt="" class="btn-icon">
+                    </a>
+                </div>
+            </div>
+
+            <div class="info-wrapper">
+                <p>Mémoire de recherche professionnel à ESAAT de Roubaix en 2026</p>
+                <p>DSAA design graphique et typographie, pratiques éditoriales.</p>
+            </div>
+
+            <div class="contact-buttons-wrapper">
+                <a href="https://www.instagram.com/timeolanglois_/" target="_blank" rel="noopener noreferrer" class="contact-btn">
+                    <img src="Assets/icone_insta.png" alt="Instagram" class="contact-icon">
+                </a>
+                <a href="mailto:timeo.langlois.pro@gmail.com" class="contact-btn">
+                    <img src="Assets/icone_mail.png" alt="Email" class="contact-icon">
+                </a>
+            </div>
+
         </div>
     </div>
 
-    <button id="next-btn" class="nav-btn right">❯</button>
-
-    <div class="page-info">
-        <input type="number" id="page-num" value="1" min="1"> / <span id="page-count">--</span>
+    <div class="landing-right">
+        <img src="Assets/EV&S_img1.webp" alt="">
+        <img src="Assets/EV&S_img2.webp" alt="">
     </div>
 
-    <script src="script.js"></script>
 </body>
 </html>

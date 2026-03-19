@@ -1,78 +1,257 @@
+@font-face {
+    font-family: 'NeueHaas';
+    src: url('Assets/Fonts/NeueHaasDisplayBold.ttf') format('truetype');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'NeueHaas';
+    src: url('Assets/Fonts/NeueHaasDisplayMediu.ttf') format('truetype');
+    font-weight: 500;
+}
+
 body {
-    background-color: #1a1a1a;
+    background-color: #151515;
+    color: white;
     margin: 0;
+    font-family: 'NeueHaas', sans-serif;
+}
+
+.landing-body {
     height: 100vh;
     width: 100vw;
     overflow: hidden;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Helvetica', sans-serif;
 }
 
-.viewer-container {
+.landing-left {
+    flex: 0 0 60%;
+    padding: 50px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.landing-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: auto auto auto; 
+    gap: 40px;
     width: 100%;
-    height: 100%;
+    max-width: 900px;
+}
+
+.cover-wrapper {
+    grid-column: 1;
+    grid-row: 1;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    align-items: flex-start; 
 }
 
-#book-container {
+.cover-img {
+    width: 100%;
+    height: auto;
+    max-height: 70vh; 
+    object-fit: contain;
+}
+
+.text-and-buttons {
+    grid-column: 2;
+    grid-row: 1;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.6); /* Belle ombre profonde */
+    flex-direction: column;
+    justify-content: space-between; 
 }
 
-canvas {
-    display: block;
-    background-color: white;
-    /* Plus de max-width ici, le JS s'en occupe */
-}
-
-/* --- Boutons --- */
-.nav-btn {
-    position: fixed; /* Fixé à la fenêtre */
-    top: 50%;
-    transform: translateY(-50%);
-    background: transparent;
-    color: white;
-    border: none;
-    font-size: 3rem;
-    cursor: pointer;
-    padding: 20px;
-    opacity: 0.3;
-    transition: opacity 0.3s;
-    z-index: 100;
-}
-
-.nav-btn:hover { opacity: 1; }
-.nav-btn.left { left: 20px; }
-.nav-btn.right { right: 20px; }
-
-/* --- Compteur (En bas à droite) --- */
-.page-info {
-    position: fixed;
-    bottom: 25px;
-    right: 30px;
-    color: #ccc;
-    font-size: 0.9rem;
-    background: rgba(0,0,0,0.7);
-    padding: 8px 15px;
-    border-radius: 8px;
-    backdrop-filter: blur(5px);
-    z-index: 100;
-    font-family: monospace;
-}
-
-input {
-    background: transparent;
-    border: none;
-    color: white;
-    width: 30px;
-    text-align: center;
+.title-wrapper h1 {
+    font-size: 3.1vw;
+    margin: 0 0 10px 0;
+    line-height: 1.1;
     font-weight: bold;
 }
-input:focus { outline: none; border-bottom: 1px solid white; }
+
+.title-wrapper h2, .author-block h3 {
+    font-size: 1.7vw;
+    font-weight: 500;
+    margin: 0;
+}
+
+.author-line {
+    width: 100%;
+    border: none;
+    border-top: 2px solid white;
+    margin: 15px 0 8px 0; 
+}
+
+.author-block {
+    width: fit-content;
+}
+
+.buttons-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.action-btn {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    width: fit-content;
+    min-width: 180px; 
+    padding: 10px 20px;
+    background: white;
+    color: #151515;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1vw;
+    border: 1px solid transparent; 
+    transition: all 0.3s ease;
+}
+
+.btn-icon {
+    height: 16px;
+    margin-left: 15px;
+    opacity: 1; 
+    filter: none; 
+    transition: transform 0.3s ease;
+}
+
+.action-btn:hover {
+    background-color: #151515;
+    color: white;
+    border-color: white; 
+}
+
+.action-btn:hover .btn-icon {
+    filter: invert(1); 
+    transform: translateX(6px);
+}
+
+.info-wrapper {
+    grid-column: 1 / span 2;
+    grid-row: 2;
+    margin-top: 20px;
+}
+
+.info-wrapper p {
+    font-size: 1.25vw;
+    margin: 4px 0;
+    color: rgba(255, 255, 255, 0.6); 
+    font-weight: 500;
+}
+
+.contact-buttons-wrapper {
+    grid-column: 1;
+    grid-row: 3;
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.contact-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px; 
+    width: 40px; 
+    background: white;
+    border: 1px solid transparent; 
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.contact-icon {
+    height: 20px;
+    width: 20px;
+    object-fit: contain;
+    filter: none; 
+}
+
+.contact-btn:hover {
+    background: #151515;
+    border-color: white;
+}
+
+.contact-btn:hover .contact-icon {
+    filter: invert(1); 
+}
+
+.landing-right {
+    flex: 0 0 40%;
+    display: flex;
+    flex-direction: column;
+}
+
+.landing-right img {
+    flex: 1;
+    width: 100%;
+    height: 50%;
+    object-fit: cover;
+    object-position: center; 
+}
+
+
+@media (max-width: 900px) {
+    .landing-body { 
+        flex-direction: column; 
+        overflow-y: auto; 
+        height: auto; 
+    }
+    
+    .landing-left { 
+        width: 100%; 
+        padding: 40px 20px; 
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+    }
+
+    .landing-grid { 
+        display: flex; 
+        flex-direction: column; 
+        width: 100%;
+        max-width: 380px; 
+        gap: 30px; 
+    }
+
+    .text-and-buttons { display: contents; }
+
+    .title-wrapper { order: 1; width: 100%; }
+    .title-wrapper h1 { font-size: 38px; margin-bottom: 5px; }
+    .title-wrapper h2, .author-block h3 { font-size: 20px; }
+    .author-line { margin: 15px 0 10px 0; }
+
+    .cover-wrapper { order: 2; width: 100%; }
+    .cover-img { 
+        width: 100%; 
+        height: auto; 
+        max-height: none; 
+        display: block; 
+    }
+    
+    .buttons-wrapper { order: 3; width: 100%; }
+    .action-btn { 
+        width: 100%; 
+        box-sizing: border-box; 
+        font-size: 16px; 
+        padding: 15px 20px;
+        min-width: unset;
+    }
+
+    .info-wrapper { order: 4; width: 100%; margin-top: 0; }
+    .info-wrapper p { font-size: 15px; }
+
+    .contact-buttons-wrapper { 
+        order: 5; 
+        width: 100%; 
+        justify-content: flex-start; 
+        margin-top: 5px;
+    }
+    
+    .landing-right { width: 100%; height: auto; flex: none; }
+    .landing-right img { height: auto; max-height: 50vh; width: 100%; }
+}
