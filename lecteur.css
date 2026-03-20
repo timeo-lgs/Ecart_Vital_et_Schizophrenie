@@ -1,11 +1,9 @@
-/* =========================================
-   1. POLICES & BASE
-========================================= */
 @font-face {
     font-family: 'NeueHaas';
     src: url('Assets/Fonts/NeueHaasDisplayBold.ttf') format('truetype');
     font-weight: bold;
 }
+
 @font-face {
     font-family: 'NeueHaas';
     src: url('Assets/Fonts/NeueHaasDisplayMediu.ttf') format('truetype');
@@ -15,7 +13,6 @@
 body {
     background-color: #151515;
     margin: 0;
-    /* La magie opère ici : dvh gère la barre d'adresse dynamique sur mobile */
     height: 100vh;
     height: 100dvh; 
     width: 100vw;
@@ -26,9 +23,6 @@ body {
     font-family: 'NeueHaas', 'Helvetica Neue', Helvetica, sans-serif;
 }
 
-/* =========================================
-   2. CONTENEUR DU LIVRE
-========================================= */
 .viewer-container {
     width: 100%;
     height: 100%;
@@ -51,9 +45,6 @@ canvas {
     background-color: white; 
 }
 
-/* =========================================
-   3. NAVIGATION (Flèches latérales sur PC)
-========================================= */
 .nav-btn {
     position: fixed;
     top: 50%;
@@ -86,9 +77,6 @@ canvas {
     transform: translateY(-50%) scale(1.05);
 }
 
-/* =========================================
-   4. COMPTEUR DE PAGES (Bas droite)
-========================================= */
 .page-info {
     position: fixed;
     bottom: 25px;
@@ -121,9 +109,6 @@ input:focus {
     border-bottom: 1px solid white;
 }
 
-/* =========================================
-   5. CONTRÔLES BAS GAUCHE (Retour & DL)
-========================================= */
 .viewer-controls-left {
     position: fixed;
     bottom: 25px; 
@@ -162,25 +147,47 @@ input:focus {
     filter: invert(1); 
 }
 
-/* =========================================
-   6. RESPONSIVE MOBILE (Pour le lecteur)
-========================================= */
 @media (max-width: 900px) {
-    /* Ajustement des contrôles en bas */
-    .viewer-controls-left { bottom: 15px; left: 15px; gap: 5px; }
-    .viewer-btn { width: 35px; height: 35px; }
-    .viewer-icon { height: 18px; width: 18px; }
+    .viewer-controls-left { 
+        bottom: 15px; 
+        left: 15px; 
+        gap: 5px; 
+    }
     
-    .page-info { bottom: 15px; right: 15px; padding: 6px 12px; font-size: 0.8rem; }
+    .viewer-btn { 
+        width: 35px; 
+        height: 35px; 
+    }
     
-    /* Déplacement des flèches en bas, juste au-dessus des contrôles ! */
+    .viewer-icon { 
+        height: 18px; 
+        width: 18px; 
+    }
+    
+    .page-info { 
+        bottom: 15px; 
+        right: 15px; 
+        padding: 6px 12px; 
+        font-size: 0.8rem; 
+    }
+    
     .nav-btn { 
         width: 45px; 
         height: 45px;
-        top: auto;          /* Annule le centrage vertical */
-        bottom: 75px;       /* Place les flèches juste au-dessus des boutons DL/Retour */
-        transform: none;    /* Annule le décalage */
+        top: auto;          
+        bottom: 75px;       
+        transform: none;    
     }
-    .nav-btn.left { left: 15px; }
-    .nav-btn.right { right: 15px; }
+    
+    .nav-btn.left { 
+        left: 15px; 
+    }
+    
+    .nav-btn.right { 
+        right: 15px; 
+    }
+
+    .nav-btn:hover, .nav-btn:active {
+        transform: scale(1.05); 
+    }
 }
