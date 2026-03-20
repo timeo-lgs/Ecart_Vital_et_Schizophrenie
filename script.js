@@ -1,4 +1,3 @@
-// Remplace bien par le nom exact de ton PDF allégé pour le web si tu l'as changé
 const url = 'Ecart_Vital_et_Schizophrenie-WebVersion-1.pdf'; 
 
 let pdfDoc = null;
@@ -16,9 +15,7 @@ const loadingTask = pdfjsLib.getDocument({
     cMapPacked: true,
 });
 
-// --- DÉTECTION INTELLIGENTE (MOBILE + PORTRAIT) ---
 const isSinglePageMode = () => {
-    // Vrai SI on est sur un petit écran ET que l'écran est à la verticale
     return window.innerWidth <= 900 && window.innerHeight > window.innerWidth;
 };
 
@@ -26,16 +23,17 @@ const renderPage = (num, canvas, ctx) => {
     return pdfDoc.getPage(num).then(page => {
         
         const isSingle = isSinglePageMode();
+        const isMobile = window.innerWidth <= 900;
 
-        // --- CORRECTION HD POUR MOBILE ---
-        // devicePixelRatio vaut généralement 2 ou 3 sur les téléphones récents
         const pixelRatio = window.devicePixelRatio || 1;
-        // On booste la qualité sur mobile sans dépasser un maximum (4) pour ne pas faire crasher Safari
         const renderQuality = isSingle ? Math.min(pixelRatio * 1.5, 4) : 3; 
 
-        // En mode 1 page, on laisse de la marge sur les côtés (20px). Sinon on coupe en 2.
         const maxWidth = isSingle ? (window.innerWidth - 20) : (window.innerWidth - 100) / 2;
-        const maxHeight = window.innerHeight * 0.95;
+        
+        // CORRECTION ICI : Si on est sur mobile MAIS en paysage (donc isSingle = false),
+        // on laisse plus de marge en bas (80% au lieu de 95%) pour éviter que ça coupe.
+        const heightFactor = (isMobile && !isSingle) ? 0.80 : 0.95;
+        const maxHeight = window.innerHeight * heightFactor;
 
         const unscaledViewport = page.getViewport({ scale: 1 });
         const scaleWidth = maxWidth / unscaledViewport.width;
@@ -44,11 +42,9 @@ const renderPage = (num, canvas, ctx) => {
 
         const viewport = page.getViewport({ scale: displayScale });
 
-        // Résolution de calcul interne (HD)
         canvas.width = Math.floor(viewport.width * renderQuality);
         canvas.height = Math.floor(viewport.height * renderQuality);
 
-        // Taille d'affichage CSS (taille réelle sur l'écran)
         canvas.style.width = `${Math.floor(viewport.width)}px`;
         canvas.style.height = `${Math.floor(viewport.height)}px`;
 
@@ -68,12 +64,10 @@ const renderSpread = () => {
     const isSingle = isSinglePageMode();
 
     if (isSingle) {
-        // --- MODE 1 PAGE (Portrait) ---
         canvasLeft.style.display = 'none';
         canvasRight.style.display = 'block';
         renderPage(pageNum, canvasRight, ctxRight).then(() => finalizeRender());
     } else {
-        // --- MODE 2 PAGES (Horizontal ou PC) ---
         if (pageNum === 1) {
             canvasLeft.style.display = 'none';
             canvasRight.style.display = 'block';
@@ -104,10 +98,8 @@ const finalizeRender = () => {
     const isSingle = isSinglePageMode();
     
     if (isSingle) {
-        // Sur mobile vertical, affiche juste "82"
         inputField.value = `${pageNum}`;
     } else {
-        // Sur PC ou horizontal, affiche "82-83"
         if (pageNum === 1) {
             inputField.value = "1";
         } else if (pageNum + 1 <= pdfDoc.numPages) {
@@ -132,9 +124,9 @@ const goPrev = () => {
     const isSingle = isSinglePageMode();
     
     if (isSingle) {
-        pageNum = pageNum - 1; // Avance de 1 en mode vertical
+        pageNum = pageNum - 1; 
     } else {
-        pageNum = (pageNum === 2) ? 1 : pageNum - 2; // Avance de 2 en double page
+        pageNum = (pageNum === 2) ? 1 : pageNum - 2; 
     }
     renderSpread();
 };
@@ -144,9 +136,9 @@ const goNext = () => {
     const isSingle = isSinglePageMode();
     
     if (isSingle) {
-        pageNum = pageNum + 1; // Avance de 1 en mode vertical
+        pageNum = pageNum + 1; 
     } else {
-        pageNum = (pageNum === 1) ? 2 : pageNum + 2; // Avance de 2 en double page
+        pageNum = (pageNum === 1) ? 2 : pageNum + 2; 
     }
     renderSpread();
 };
@@ -184,7 +176,6 @@ document.getElementById('page-num').addEventListener('change', (e) => {
     renderSpread();
 });
 
-// --- GESTION DE LA ROTATION DU TÉLÉPHONE ---
 let resizeTimeout;
 let wasSinglePage = isSinglePageMode();
 
@@ -192,15 +183,12 @@ window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
         const isSingleNow = isSinglePageMode();
-        
-        // Si on passe du mode vertical (1 page) au mode horizontal (2 pages)
         if (wasSinglePage && !isSingleNow) {
-            // On recale la page pour ne pas avoir un décalage pair/impair
             if (pageNum !== 1 && pageNum % 2 !== 0) {
                 pageNum = pageNum - 1; 
             }
         }
         wasSinglePage = isSingleNow;
         renderSpread();
-    }, 200); // Léger délai pour que le tel ait fini de pivoter
+    }, 200); 
 });

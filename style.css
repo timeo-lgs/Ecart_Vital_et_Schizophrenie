@@ -258,3 +258,9 @@ body {
     .landing-right { width: 100%; height: auto; flex: none; }
     .landing-right img { height: auto; max-height: 50vh; width: 100%; }
 }
+@media (max-width: 900px) and (orientation: portrait) {
+    .nav-btn {
+        top: 20px; 
+        transform: none; 
+    }
+}
