@@ -37,7 +37,6 @@ body {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     grid-template-rows: auto auto auto; 
-    /* CORRECTION : On garde un grand espace gauche/droite (40px) mais on réduit l'espace haut/bas (20px) */
     column-gap: 40px;
     row-gap: 20px;
     width: 100%;
@@ -54,7 +53,6 @@ body {
 .cover-img {
     width: 100%;
     height: auto;
-    /* CORRECTION : On limite l'image à 60% de l'écran pour laisser respirer le haut et le bas */
     max-height: 60vh; 
     object-fit: contain;
 }
@@ -134,7 +132,6 @@ body {
 .info-wrapper {
     grid-column: 1 / span 2;
     grid-row: 2;
-    /* CORRECTION : Marge réduite pour resserrer le bloc vers le haut */
     margin-top: 5px;
 }
 
@@ -148,7 +145,6 @@ body {
 .contact-buttons-wrapper {
     grid-column: 1;
     grid-row: 3;
-    /* CORRECTION : Marge totalement retirée pour les coller sous le texte du diplôme */
     margin-top: 0px;
     display: flex;
     gap: 10px;
@@ -195,9 +191,7 @@ body {
     object-position: center; 
 }
 
-/* =========================================
-   MOBILE (POUR LA PAGE D'ACCUEIL)
-========================================= */
+
 @media (max-width: 900px) {
     .landing-body { 
         flex-direction: column; 
