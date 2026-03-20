@@ -30,9 +30,9 @@ const renderPage = (num, canvas, ctx) => {
 
         const maxWidth = isSingle ? (window.innerWidth - 20) : (window.innerWidth - 100) / 2;
         
-        // CORRECTION ICI : Si on est sur mobile MAIS en paysage (donc isSingle = false),
-        // on laisse plus de marge en bas (80% au lieu de 95%) pour éviter que ça coupe.
-        const heightFactor = (isMobile && !isSingle) ? 0.80 : 0.95;
+        // CORRECTION DE LA HAUTEUR : On limite le PDF à 80% de l'écran sur mobile 
+        // pour laisser un bel espace aux boutons en bas et éviter le "crop" des barres Safari/Chrome.
+        const heightFactor = isMobile ? 0.80 : 0.95;
         const maxHeight = window.innerHeight * heightFactor;
 
         const unscaledViewport = page.getViewport({ scale: 1 });
